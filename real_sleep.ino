@@ -9,11 +9,11 @@
 
 //store the sleep type
 RTC_DATA_ATTR int sleepType = 2;
-//Wifi connection variables
-const char* ssid = "shinobi";
-const char* password = "jack12345";
+// Wifi connection variables
+const char* ssid = "<wifi_ssid>";
+const char* password = "<wifi_password>";
 
-//Domain name with URL path or IP address with path
+// Domain name with URL path or IP address with path
 const char* readServer = "http://<ipaddress>/<folder_path>/backend.php?query=preferences";
 const char* postServer = "http://<ipaddress>/<folder_path>/backend.php?query=sensor";
 
@@ -32,7 +32,7 @@ void setup() {
 
 void connect_to_wifi() {
 
-    //connect to WiFi
+  // connect to WiFi
   WiFi.begin(ssid, password);
   Serial.println("Connecting");
   while(WiFi.status() != WL_CONNECTED) {
@@ -90,7 +90,7 @@ void loop(){
     float humi  = dht22.readHumidity();
     float tempC = dht22.readTemperature();
 
-    //Check WiFi connection status
+    // Check WiFi connection status
     if(WiFi.status()== WL_CONNECTED){
       WiFiClient client;
       HTTPClient http;

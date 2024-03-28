@@ -9,7 +9,7 @@
 #define DHT22_PIN 13
 
 // Store the sleep type
-RTC_DATA_ATTR String sleepType = "Deep Sleep";
+RTC_DATA_ATTR int sleepType = 2;
 RTC_DATA_ATTR int numReadings = 0;
 
 // WiFi connection variables
@@ -17,8 +17,8 @@ const char* ssid = "shinobi";
 const char* password = "jack12345";
 
 // Domain name with URL path or IP address with path
-const char* postServer = "http://<ip_address>/<folder_path>/backend.php?query=sensor";
-const char* readServer = "http://<ip_address>/<folder_path>/backend.php?query=preferences";
+const char* postServer = "http://192.168.93.95/lab_4/backend.php?query=spiffs";
+const char* readServer = "http://192.168.93.95/lab_4/backend.php?query=preferences";
 
 // Variables for DHT22 readings
 float humi;
@@ -169,7 +169,7 @@ void loop() {
   if (WiFi.status() != WL_CONNECTED) {
     connect_to_wifi();
     }
-  sleepType = get_sleep_type();
+  sleepType = get_sleep_type().toInt();
 
   // DHT11 sensor readings
   float humi  = dht22.readHumidity();
@@ -201,7 +201,7 @@ void loop() {
     }
 
   // After the number of records gets to some value send to database
-  if (sleepType == "Light Sleep") {
+  if (sleepType == 1) {
     Serial.println("Going to a light sleep now");
     Serial.flush();
     esp_light_sleep_start();
