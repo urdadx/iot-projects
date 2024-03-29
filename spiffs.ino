@@ -101,7 +101,6 @@ void post_to_database(String result) {
 
     String jsonString = result;
     // how to send multiple records. collect in a list and try to send at once
-    Serial.println("Array changed to JSON :");
     Serial.println(jsonString.c_str());
     int httpResponseCode = http.POST(jsonString.c_str());
 

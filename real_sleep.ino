@@ -113,7 +113,7 @@ void loop(){
       // Free resources
       http.end();
 
-      if (sleepType == "Light") {
+      if (sleepType == 1) {
         Serial.println("Going to a light sleep now");
         Serial.flush(); 
         esp_light_sleep_start();
